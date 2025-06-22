@@ -1,8 +1,9 @@
 import os
 from PIL import ImageDraw, Image, ImageChops, ImageFont
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from logging import getLogger
+import asyncio # Add this import for sleep and create_task
 from BrandrdXMusic import app
 
 LOGGER = getLogger(__name__)
@@ -37,7 +38,7 @@ def circle(pfp, size=(825, 824)):
         LOGGER.error(f"Error in circle function: {str(e)}")
         raise
 
-def welcomepic(pic, user, chatname, id, uname):
+def welcomepic(pic_path, user, chatname, id, uname):
     LOGGER.info(f"Generating welcome image for user {user} (ID: {id}) in chat {chatname}")
     try:
         background_path = "BrandrdXMusic/assets/AbhiWel.png"
@@ -51,7 +52,7 @@ def welcomepic(pic, user, chatname, id, uname):
             raise FileNotFoundError(f"Font file not found at {font_path}")
 
         background = Image.open(background_path)
-        pfp = Image.open(pic).convert("RGBA")
+        pfp = Image.open(pic_path).convert("RGBA") # Use pic_path directly
         pfp = circle(pfp)
         pfp = pfp.resize((825, 824))
         draw = ImageDraw.Draw(background)
@@ -96,6 +97,17 @@ async def get_user_bio(user_id):
         LOGGER.error(f"Error fetching bio for user {user_id}: {str(e)}")
         return "No bio available"
 
+# Function to delete welcome message after a delay
+async def delete_welcome_message_after_delay(message: Message, delay: int):
+    try:
+        await asyncio.sleep(delay)
+        if message.chat.type != "private": # Only try to delete in groups, private chats don't need it.
+            await message.delete()
+            LOGGER.info(f"Welcome message {message.id} deleted after {delay} seconds in chat {message.chat.id}")
+    except Exception as e:
+        LOGGER.error(f"Error deleting welcome message {message.id}: {e}")
+
+
 @app.on_message(filters.command(["welcome"], prefixes=["/", "!"]) & filters.group)
 async def toggle_welcome(_, message):
     chat_id = message.chat.id
@@ -104,9 +116,10 @@ async def toggle_welcome(_, message):
     # Check if user is admin
     try:
         user = await app.get_chat_member(chat_id, message.from_user.id)
-        if not user.privileges or not user.privileges.can_change_info:
-            LOGGER.info(f"User {message.from_user.id} is not an admin in chat_id {chat_id}")
-            await message.reply("You need to be an admin to use this command!")
+        # Check for can_change_info or can_delete_messages or full admin rights
+        if not user.privileges or (not user.privileges.can_change_info and not user.privileges.can_delete_messages and not user.privileges.can_manage_chat):
+            LOGGER.info(f"User {message.from_user.id} is not an admin with sufficient privileges in chat_id {chat_id}")
+            await message.reply("You need to be an admin with 'change info' or 'delete messages' permission to use this command!")
             return
     except Exception as e:
         LOGGER.error(f"Error checking admin status in chat_id {chat_id}: {str(e)}")
@@ -149,13 +162,13 @@ NEW GROUP
 ➖➖➖➖➖➖➖➖➖➖➖
 𝗡𝗔𝗠𝗘: {message.chat.title}
 𝗜𝗗: {message.chat.id}
-𝐔𝐒𝐄𝐑𝐍𝐀𝗠𝗘: @{message.chat.username if message.chat.username else "None"}
+𝐔𝐒𝐄𝐑𝐍𝗔𝗠𝗘: @{message.chat.username if message.chat.username else "None"}
 ➖➖➖➖➖➖➖➖➖➖➖
 """)
                 LOGGER.info(f"Sent new group info to LOG_CHANNEL_ID {LOG_CHANNEL_ID}")
             else:
                 LOGGER.warning("LOG_CHANNEL_ID not set, cannot send new group info")
-            welcome_settings[chat_id] = True
+            welcome_settings[chat_id] = True # Bot add hone par welcome enable kar do
             LOGGER.info(f"Welcome enabled by default for chat_id {chat_id}")
             continue
 
@@ -167,21 +180,24 @@ NEW GROUP
             last_seen = await get_last_seen_status(u)
             bio = await get_user_bio(u.id)
 
-            # Download user profile picture
-            pic = "BrandrdXMusic/assets/AbhiWel.png"
+            pic_to_use = "BrandrdXMusic/assets/AbhiWel.png" # Default to background image
+            downloaded_user_pic_path = None # To store the path of downloaded user pic for cleanup
+
             if u.photo:
                 try:
-                    pic = await app.download_media(
-                        u.photo.big_file_id, file_name=f"pp{u.id}.png"
+                    # Download user profile picture to a specific path for easier cleanup
+                    downloaded_user_pic_path = await app.download_media(
+                        u.photo.big_file_id, file_name=f"downloads/pp{u.id}.png"
                     )
-                    LOGGER.info(f"Profile picture downloaded for user {u.id} at {pic}")
+                    pic_to_use = downloaded_user_pic_path # Use downloaded pic for welcome card
+                    LOGGER.info(f"Profile picture downloaded for user {u.id} at {downloaded_user_pic_path}")
                 except Exception as e:
                     LOGGER.error(f"Error downloading profile picture for user {u.id}: {str(e)}")
-                    pic = "BrandrdXMusic/assets/AbhiWel.png"
+                    # If download fails, pic_to_use remains the default background image
 
-            # Generate welcome image
-            welcomeimg = welcomepic(
-                pic, u.first_name, message.chat.title, u.id, u.username
+            # Generate welcome image using the determined pic_to_use
+            welcome_image_path = welcomepic(
+                pic_to_use, u.first_name, message.chat.title, u.id, u.username
             )
 
             # Prepare caption with the specified format
@@ -198,29 +214,38 @@ NEW GROUP
 ➻ ʙɪᴏ ‣ {bio}
 ➻ ᴛᴇʟᴇɢʀᴀᴍ ᴘʀᴇᴍɪᴜᴍ ‣ {'True' if u.is_premium else 'False'}
 ➖➖➖➖➖➖➖➖➖➖➖
-๏ 𝐌𝐀𝐃𝐄 𝐁𝐘 ➠ [Aʙнɪ 𓆩🇽𓆪 �_KI𝗡𝗚 📿](https://t.me/imagine_iq)
+๏ 𝐌𝐀𝐃𝐄 𝐁𝐘 ➠ [Aʙнɪ 𓆩🇽𓆪 _KI𝗡𝗚 📿](https://t.me/imagine_iq)
 """
 
             # Send welcome photo with caption
             LOGGER.info(f"Sending welcome photo for user {u.id} in chat_id {chat_id}")
-            temp.MELCOW[f"welcome-{chat_id}"] = await app.send_photo(
+            sent_message = await app.send_photo(
                 chat_id,
-                photo=welcomeimg,
+                photo=welcome_image_path,
                 caption=caption,
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⦿ ᴀᴅᴅ ᴍᴇ ⦿", url="https://t.me/RockXMusic_Robot?startgroup=true")]])
             )
+            
+            # Store message object and schedule deletion
+            temp.MELCOW[f"welcome-{chat_id}"] = sent_message
+            asyncio.create_task(delete_welcome_message_after_delay(sent_message, 30)) # Schedule deletion after 30 seconds
+
+            await asyncio.sleep(0.5) # Small delay for API rate limiting
             LOGGER.info(f"Welcome photo sent for user {u.id} in chat_id {chat_id}")
+
         except Exception as e:
             LOGGER.error(f"Error sending welcome photo for user {u.id}: {str(e)}")
             continue
 
-        # Clean up files
-        try:
-            if os.path.exists(f"downloads/welcome#{u.id}.png"):
-                os.remove(f"downloads/welcome#{u.id}.png")
-                LOGGER.info(f"Deleted welcome image for user {u.id}")
-            if os.path.exists(f"downloads/pp{u.id}.png"):
-                os.remove(f"downloads/pp{u.id}.png")
-                LOGGER.info(f"Deleted profile picture for user {u.id}")
-        except Exception as e:
-            LOGGER.error(f"Error cleaning up files: {str(e)}")
+        finally: # Cleanup will always run, even if errors occur during message sending
+            # Clean up files
+            try:
+                if os.path.exists(welcome_image_path):
+                    os.remove(welcome_image_path)
+                    LOGGER.info(f"Deleted welcome image for user {u.id}")
+                # Only delete if a profile picture was actually downloaded and its path is available
+                if downloaded_user_pic_path and os.path.exists(downloaded_user_pic_path):
+                    os.remove(downloaded_user_pic_path)
+                    LOGGER.info(f"Deleted profile picture for user {u.id}")
+            except Exception as e:
+                LOGGER.error(f"Error cleaning up files: {str(e)}")
