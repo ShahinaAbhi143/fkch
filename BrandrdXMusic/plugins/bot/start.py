@@ -87,20 +87,13 @@ async def start_pm(client, message: Message, _):
     else:
         try:
             out = private_panel(_)
-            # Initial welcome animation
+            # Initial welcome animation (ab sirf 2 baar change hoga aur turant delete)
             lol = await message.reply_text(f"💕 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💕 ❣️")
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.1) # Thoda sa delay pehle change ke liye
             await lol.edit_text(f"🌸 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 🌸 🥳")
-            await asyncio.sleep(0.5)
-            await lol.edit_text(f"💖 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💖 💥")
-            await asyncio.sleep(0.5)
-            await lol.edit_text(f"✨ Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} ✨ 🤩")
-            await asyncio.sleep(0.5)
-            await lol.edit_text(f"💞 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💞 💌")
-            await asyncio.sleep(0.5)
-            await lol.edit_text(f"🌟 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 🌟 💕")
-            await asyncio.sleep(0.5)
-            await lol.delete()
+            await asyncio.sleep(0.1) # Thoda sa delay dusre change ke liye
+            await lol.edit_text(f"💖 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention}💖 💥")
+            await lol.delete() # Turant delete
 
             # Static welcome message
             welcome = await message.reply_text(f"🌟 Wᴇʟᴄᴏᴍᴇ {message.from_user.mention} to {app.mention}! 🌟 Gᴇᴛ Rᴇᴀᴅʏ Fᴏʀ Aᴡᴇꜱᴏᴍᴇ Mᴜꜱɪᴄ! 🎶")
@@ -175,13 +168,13 @@ async def start_pm(client, message: Message, _):
             await message.reply_photo(
                 photo=config.START_IMG_URL,
                 caption=(
-                    f"Hєу {message.from_user.mention}, 🥀\n\n"
-                    f"๏ <a href='https://t.me/{app.username}?start'>{app.mention}</a> !\n\n"
+                    f"<b>Hєу</b> {message.from_user.mention}, 🥀\n\n"
+                    f"<b>Tʜɪꜱ Iꜱ</b> ๏ <a href='https://t.me/{app.username}?start'>{app.mention}</a> !\n\n"
                     f"➻ A Fᴀsᴛ & Pᴏᴡᴇʀғᴜʟ Tᴇʟᴇɢʀᴀᴍ Mᴜsɪᴄ Pʟᴀʏᴇʀ Bᴏᴛ Wɪᴛʜ Sᴏᴍᴇ Aᴡᴇsᴏᴍᴇ Fᴇᴀᴛᴜʀᴇs.\n\n"
-                    f"Sᴜᴘᴘᴏʀᴛᴇᴅ Pʟᴀᴛғᴏʀᴍs : Yᴏᴜᴛᴜʙᴇ, Sᴘᴏᴛɪғʏ, Rᴇssᴏ, Aᴘᴘʟᴇ Mᴜsɪᴄ Aɴᴅ Sᴏᴜɴᴅᴄʟᴏᴜᴅ.\n"
+                    f"<b>Sᴜᴘᴘᴏʀᴛᴇᴅ Pʟᴀᴛғᴏʀᴍs</b> : Yᴏᴜᴛᴜʙᴇ, Sᴘᴏᴛɪғʏ, Rᴇssᴏ, Aᴘᴘʟᴇ Mᴜsɪᴄ Aɴᴅ Sᴏᴜɴᴅᴄʟᴏᴜᴅ.\n"
                     f"──────────────────\n"
-                    f"➻ Bᴀʙʏ... Fᴀᴛʜᴇʀ Hᴀꜱ Aʟʀᴇᴀᴅʏ Aʀʀɪᴠᴇᴅ ✨\n"
-                    f"๏ Cʟɪᴄᴋ Oɴ Tʜᴇ Hᴇʟᴩ Bᴜᴛᴛᴏɴ Tᴏ Gᴇᴛ Iɴғᴏʀᴍᴀᴛɪᴏɴ Aʙᴏᴜᴛ Mʏ Mᴏᴅᴜʟᴇs Aɴᴅ Cᴏᴍᴍᴀɴᴅs."
+                    f"➻ Bᴀʙʏ... <b>Fᴀᴛʜᴇʀ</b> Hᴀꜱ Aʟʀᴇᴀᴅʏ Aʀʀɪᴠᴇᴅ ✨\n"
+                    f"<b>๏ Cʟɪᴄᴋ Oɴ Tʜᴇ Hᴇʟᴩ Bᴜᴛᴛᴏɴ Tᴏ Gᴇᴛ Iɴғᴏʀᴍᴀᴛɪᴏɴ Aʙᴏᴜᴛ Mʏ Mᴏᴅᴜʟᴇs Aɴᴅ Cᴏᴍᴍᴀɴᴅs.</b>"
                 ),
                 reply_markup=InlineKeyboardMarkup(out),
             )
@@ -189,7 +182,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} Hᴀs Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ.\n\n<b>Usᴇʀ Iᴅ :</b> <code>{message.from_user.id}</code>\n<b>Usᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
         except Exception as e:
             print(e)
