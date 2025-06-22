@@ -169,7 +169,7 @@ async def start_pm(client, message: Message, _):
                 photo=config.START_IMG_URL,
                 caption=(
                     f"<b>Hєу</b> {message.from_user.mention}, 🥀\n\n"
-                    f"<b>Tʜɪꜱ Iꜱ</b> ๏ <a href='https://t.me/{app.username}?start'>{app.mention}</a> !\n\n"
+                    f"<b>➻ Tʜɪꜱ Iꜱ</b> <a href='https://t.me/{app.username}?start'>{app.mention}</a> !\n\n"
                     f"➻ A Fᴀsᴛ & Pᴏᴡᴇʀғᴜʟ Tᴇʟᴇɢʀᴀᴍ Mᴜsɪᴄ Pʟᴀʏᴇʀ Bᴏᴛ Wɪᴛʜ Sᴏᴍᴇ Aᴡᴇsᴏᴍᴇ Fᴇᴀᴛᴜʀᴇs.\n\n"
                     f"<b>Sᴜᴘᴘᴏʀᴛᴇᴅ Pʟᴀᴛғᴏʀᴍs</b> : Yᴏᴜᴛᴜʙᴇ, Sᴘᴏᴛɪғʏ, Rᴇssᴏ, Aᴘᴘʟᴇ Mᴜsɪᴄ Aɴᴅ Sᴏᴜɴᴅᴄʟᴏᴜᴅ.\n"
                     f"──────────────────\n"
