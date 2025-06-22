@@ -27,7 +27,7 @@ from strings import get_string
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
-    await message.react("❤️")  # Changed to a Telegram-supported emoji
+    await message.react("❤️")
 
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
@@ -44,7 +44,7 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} Jᴜsᴛ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ Tᴏ Cʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
             return
         if name[0:3] == "inf":
@@ -82,199 +82,116 @@ async def start_pm(client, message: Message, _):
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} Jᴜsᴛ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ Tᴏ Cʜᴇᴄᴋ <b>Tʀᴀᴄᴋ Iɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>Usᴇʀ Iᴅ :</b> <code>{message.from_user.id}</code>\n<b>Usᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
     else:
         try:
             out = private_panel(_)
-            # Initial welcome animation with more emojis
-            lol = await message.reply_text(f"💕 𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} 💕 ❣️")
-            await lol.edit_text(f"🌸 𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} 🌸 🥳")
-            await lol.edit_text(f"💖 𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} 💖 💥")
-            await lol.edit_text(f"✨ 𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} ✨ 🤩")
-            await lol.edit_text(f"💞 W𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} 💞 💌")
-            await lol.edit_text(f"🌟 𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐌𝐲 𝐋𝐨𝐯𝐞 {message.from_user.mention} 🌟 💕")
+            # Initial welcome animation
+            lol = await message.reply_text(f"💕 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💕 ❣️")
+            await asyncio.sleep(0.5)
+            await lol.edit_text(f"🌸 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 🌸 🥳")
+            await asyncio.sleep(0.5)
+            await lol.edit_text(f"💖 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💖 💥")
+            await asyncio.sleep(0.5)
+            await lol.edit_text(f"✨ Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} ✨ 🤩")
+            await asyncio.sleep(0.5)
+            await lol.edit_text(f"💞 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 💞 💌")
+            await asyncio.sleep(0.5)
+            await lol.edit_text(f"🌟 Wᴇʟᴄᴏᴍᴇ Bᴀʙʏ {message.from_user.mention} 🌟 💕")
+            await asyncio.sleep(0.5)
             await lol.delete()
 
-            # Gradient-style starting animation
-            lols = await message.reply_text("✨💖")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("✨💖 𝐒")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("🌟💕 𝐒𝐭")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("💫❤️ 𝐒𝐭𝐚")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("🌸💞 𝐒𝐭𝐚𝐫")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("💖✨ 𝐒𝐭𝐚𝐫𝐭")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("🌟💕 𝐒𝐭𝐚𝐫𝐭𝐢")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("💫❤️ 𝐒𝐭𝐚𝐫𝐭𝐢𝐧")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("🌸💞 S𝐭𝐚𝐫𝐭𝐢𝐧𝐠")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("💖✨ 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 🌟")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("🌟💕 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 ✨")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("💫❤️ 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 💖")
-            await lols.edit_text("🌸💞 𝐒𝐭𝐚𝐫𝐭𝐢n𝐠 💞")
+            # Static welcome message
+            welcome = await message.reply_text(f"🌟 Wᴇʟᴄᴏᴍᴇ {message.from_user.mention} to {app.mention}! 🌟 Gᴇᴛ Rᴇᴀᴅʏ Fᴏʀ Aᴡᴇꜱᴏᴍᴇ Mᴜꜱɪᴄ! 🎶")
+            await asyncio.sleep(1)
+            await welcome.delete()
 
-            # Father is coming animation
+            # Father is coming animation (standard characters)
             father = await message.reply_text("⚡")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ W")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("✨ Wᴀ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("🔥 Wᴀɪ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ Wᴀɪᴛ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("✨ Wᴀɪᴛ...")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("🔥 Wᴀɪᴛ... F")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ Wᴀɪᴛ... Fᴀ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ I")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ C")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏ")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
             await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍ")
-            await asyncio.sleep(0.1)
-            await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪ")
-            await asyncio.sleep(0.1)
-            await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴ")
-            await asyncio.sleep(0.1)
-            await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴɢ")
-            await asyncio.sleep(0.1)
-            await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴɢ 🔥")
-            await asyncio.sleep(0.1)
-            await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴɢ ⚡")
-            await asyncio.sleep(0.1)
-            await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴɢ ✨")
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.07)
+            await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪ")
+            await asyncio.sleep(0.07)
+            await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪɴ")
+            await asyncio.sleep(0.07)
+            await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪɴɢ")
+            await asyncio.sleep(0.07)
+            await father.edit_text("✨ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪɴɢ 🔥")
+            await asyncio.sleep(0.07)
+            await father.edit_text("🔥 Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪɴɢ ⚡")
+            await asyncio.sleep(0.07)
+            await father.edit_text("⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍᴍɪɴɢ ✨")
+            await asyncio.sleep(0.07)
+
+            # Father arrived animation
+            await father.edit_text("✨ Fᴀᴛʜᴇʀ Aʀʀɪᴠᴇᴅ ✨")
+            await asyncio.sleep(0.5)
+            await father.edit_text("🔥 Fᴀᴛʜᴇʀ Aʀʀɪᴠᴇᴅ 🔥")
+            await asyncio.sleep(0.5)
+            await father.edit_text("⚡ Fᴀᴛʜᴇʀ Aʀʀɪᴠᴇᴅ ⚡")
+            await asyncio.sleep(0.5)
+            await father.edit_text("✨ Fᴀᴛʜᴇʀ Aʀʀɪᴠᴇᴅ ✨")
+            await asyncio.sleep(0.5)
             await father.delete()
 
-            # Sparkle and heart animation
-            sparkle = await message.reply_text("✨💖✨")
+            # Sticker with proper deletion
+            sticker = await message.reply_sticker("CAACAgUAAxkBAAEQI1RlTLnRAy4h9lOS6jgS5FYsQoruOAAC1gMAAg6ryVcldUr_lhPexzME")
             await asyncio.sleep(0.5)
-            await sparkle.edit_text("💖💫💖")
-            await asyncio.sleep(0.5)
-            await sparkle.edit_text("💞🌸💞")
-            await asyncio.sleep(0.5)
-            await sparkle.delete()
+            await sticker.delete()
 
-            # Sticker
-            m = await message.reply_sticker("CAACAgUAAxkBAAEQI1BlTLmx7PtOO3aPNshEU2gCy7iAFgACNQUAApqMuVeA6eJ50VbvmDME")
-
-            # Get user photo or default
-            if message.chat.photo:
-                userss_photo = await app.download_media(
-                    message.chat.photo.big_file_id,
-                )
-            else:
-                userss_photo = "assets/nodp.png"
-            if userss_photo:
-                chat_photo = userss_photo
-            chat_photo = userss_photo if userss_photo else config.START_IMG_URL
-
-        except AttributeError:
-            chat_photo = "assets/nodp.png"
-
-        await lols.delete()
-        await m.delete()
-
-        # Final welcome message with dynamic user mention and animation text
-        photo_caption = (
-            f"нєу {message.from_user.mention}, 🥀\n\n"
-            f"๏ ᴛʜɪs ɪs test !\n\n"
-            f"➻ ᴀ ғᴀsᴛ & ᴘᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴜsɪᴄ ᴘʟᴀʏᴇʀ ʙᴏᴛ ᴡɪᴛʜ sᴏᴍᴇ ᴀᴡᴇsᴏᴍᴇ ғᴇᴀᴛᴜʀᴇs.\n\n"
-            f"Sᴜᴘᴘᴏʀᴛᴇᴅ Pʟᴀᴛғᴏʀᴍs : ʏᴏᴜᴛᴜʙᴇ, sᴘᴏᴛɪғʏ, ʀᴇssᴏ, ᴀᴘᴘʟᴇ ᴍᴜsɪᴄ ᴀɴᴅ sᴏᴜɴᴅᴄʟᴏᴜᴅ.\n"
-            f"──────────────────\n"
-            f"⚡ Wᴀɪᴛ... Fᴀᴛʜᴇʀ Iꜱ Cᴏᴍɪɴɢ ✨\n"
-            f"๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs."
-        )
-        await message.reply_photo(
-            photo=chat_photo,
-            caption=photo_caption,
-            reply_markup=InlineKeyboardMarkup(out),
-        )
-
-        # Skip logging if LOGGER_ID is not defined
-        if hasattr(config, 'LOGGER_ID') and await is_on_off(2):
-            sender_id = message.from_user.id
-            sender_name = message.from_user.first_name
-            return await app.send_message(
-                config.LOGGER_ID,
-                f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ʙᴏᴛ. \n\n**ᴜsᴇʀ ɪᴅ :** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ:** {sender_name}",
+            # Restored caption with photo
+            await message.reply_photo(
+                photo=config.START_IMG_URL,
+                caption=(
+                    f"Hєу {message.from_user.mention}, 🥀\n\n"
+                    f"๏ <a href='https://t.me/{app.username}?start'>{app.mention}</a> !\n\n"
+                    f"➻ A Fᴀsᴛ & Pᴏᴡᴇʀғᴜʟ Tᴇʟᴇɢʀᴀᴍ Mᴜsɪᴄ Pʟᴀʏᴇʀ Bᴏᴛ Wɪᴛʜ Sᴏᴍᴇ Aᴡᴇsᴏᴍᴇ Fᴇᴀᴛᴜʀᴇs.\n\n"
+                    f"Sᴜᴘᴘᴏʀᴛᴇᴅ Pʟᴀᴛғᴏʀᴍs : Yᴏᴜᴛᴜʙᴇ, Sᴘᴏᴛɪғʏ, Rᴇssᴏ, Aᴘᴘʟᴇ Mᴜsɪᴄ Aɴᴅ Sᴏᴜɴᴅᴄʟᴏᴜᴅ.\n"
+                    f"──────────────────\n"
+                    f"➻ Bᴀʙʏ... Fᴀᴛʜᴇʀ Hᴀꜱ Aʟʀᴇᴀᴅʏ Aʀʀɪᴠᴇᴅ ✨\n"
+                    f"๏ Cʟɪᴄᴋ Oɴ Tʜᴇ Hᴇʟᴩ Bᴜᴛᴛᴏɴ Tᴏ Gᴇᴛ Iɴғᴏʀᴍᴀᴛɪᴏɴ Aʙᴏᴜᴛ Mʏ Mᴏᴅᴜʟᴇs Aɴᴅ Cᴏᴍᴍᴀɴᴅs."
+                ),
+                reply_markup=InlineKeyboardMarkup(out),
             )
 
-@app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
-@LanguageStart
-async def start_gp(client, message: Message, _):
-    out = start_panel(_)
-    uptime = int(time.time() - _boot_)
-    await message.reply_photo(
-        photo=config.START_IMG_URL,
-        caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
-        reply_markup=InlineKeyboardMarkup(out),
-    )
-    return await add_served_chat(message.chat.id)
-
-@app.on_message(filters.new_chat_members, group=-1)
-async def welcome(client, message: Message):
-    for member in message.new_chat_members:
-        try:
-            language = await get_lang(message.chat.id)
-            _ = get_string(language)
-            if await is_banned_user(member.id):
-                try:
-                    await message.chat.ban_member(member.id)
-                except:
-                    pass
-            if member.id == app.id:
-                if message.chat.type != ChatType.SUPERGROUP:
-                    await message.reply_text(_["start_4"])
-                    return await app.leave_chat(message.chat.id)
-                if message.chat.id in await blacklisted_chats():
-                    await message.reply_text(
-                        _["start_5"].format(
-                            app.mention,
-                            f"https://t.me/{app.username}?start=sudolist",
-                            config.SUPPORT_CHAT,
-                        ),
-                        disable_web_page_preview=True,
-                    )
-                    return await app.leave_chat(message.chat.id)
-
-                out = start_panel(_)
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
-                    caption=_["start_3"].format(
-                        message.from_user.first_name,
-                        app.mention,
-                        message.chat.title,
-                        app.mention,
-                    ),
-                    reply_markup=InlineKeyboardMarkup(out),
+            if await is_on_off(2):
+                return await app.send_message(
+                    chat_id=config.LOGGER_ID,
+                    text=f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
                 )
-                await add_served_chat(message.chat.id)
-                await message.stop_propagation()
-        except Exception as ex:
-            print(ex)
+        except Exception as e:
+            print(e)
+            await message.reply_text(_["start_7"].format(app.mention))
+            return
