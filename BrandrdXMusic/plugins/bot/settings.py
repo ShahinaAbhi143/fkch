@@ -114,7 +114,7 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         
         current_media = getattr(CallbackQuery.message, 'photo', None)
         current_caption = CallbackQuery.message.caption or ""
-        new_caption = _["start_2"].format(CallbackQuery.from_user.first_name, app.mention) + "\n\n⚡ Wᴀɪᴛ... ⚡\n✨ Fᴀᴛʜᴇʀ... ✨\n🔥 Iꜱ Cᴏᴍɪɴɢ 🔥"
+        new_caption = _["start_2"].format(CallbackQuery.from_user.first_name, app.mention) + "\n\n⚡ Bᴀʙʏ... Fᴀᴛʜᴇʀ⚡\n✨ Hᴀꜱ Aʟʀᴇᴀᴅʏ  ✨\n🔥 Aʀʀɪᴠᴇᴅ... 🔥"
 
         if (current_media and current_media.file_id == START_IMG_URL) and (current_caption == new_caption):
             try:
