@@ -1,5 +1,7 @@
 import random
 from pyrogram import filters
+from pyrogram.types import Message
+from pyrogram.enums import MessageEntityType
 from BrandrdXMusic import app
 
 
@@ -226,15 +228,15 @@ FALLBACK_ADVICE = [
     "Jo dost snacks laaye, woh keeper hai—use kabhi mat jaane do! 🍫",
     "Woh dost bano jo mushkil waqt mein bhi saath de! 🚗",
     "Dosti perfection ke baare mein nahi—sachchai ke baare mein hai! 💯",
-    "Acha dost tumhari saari kahaniyaan jaanta hai; best friend ne unhe likhne mein madad ki! 📖",
-    "Apne doston ke liye waqt nikalo—woh zindagi ka masala hain! 🌶️",
-    "Jo dost saath vibe karte hain, woh saath badhte hain—apni tribe dhoondho! 🎶",
-    "Woh dost bano jo doosron ko unka best version banne ke liye inspire kare! 🌈",
-    "Ek dost ki salah zindagi badal sakti hai—dhyaan se suno! 🗣️",
-    "Apne doston ko granted mat lo—unhe batayo ki woh maayne rakhte hain! 💌",
-    "Dost Wi-Fi ki tarah hote hain—signal kamzor ho toh bhi connected raho! 📶",
-    "Sachcha dost toofan mein bhi saath deta hai, sirf dhoop mein nahi! ⛈️",
-    "Apne doston ke saath haso—yeh sabse best therapy hai! 😄",
+    "A good friend knows all your stories; a best friend helped you write them! 📖",
+    "Make time for your friends—they’re the spice of life! 🌶️",
+    "Friends who vibe together, thrive together—find your tribe! 🎶",
+    "Be a friend who inspires others to be their best selves! 🌈",
+    "A friend’s advice can be a game-changer—listen closely! 🗣️",
+    "Don’t take your friends for granted—tell them they matter! 💌",
+    "Friends are like Wi-Fi—stay connected, even when the signal’s weak! 📶",
+    "A true friend sticks around during your storms, not just your sunshine! ⛈️",
+    "Laugh with your friends—it’s the best therapy! 😄",
 
     # Love (English) - 50
     "Love is like a Wi-Fi signal—just when you think you’re connected, it drops! 💕",
@@ -275,19 +277,19 @@ FALLBACK_ADVICE = [
     "Pyar ek safar hai—apne partner ke saath har kadam ka maza lo! 🛤️",
     "Sachcha pyar wala ladta hai tumhare liye, tumse nahi—uski kadar karo! ⚔️",
     "Pyar mein sorry kehna padta hai, chahe sahi ho—aman rakho! ✌️",
-    "Apne partner ko chhoti chhoti cheezon se surprise karo—yeh bohot maayne rakhta hai! 🎁",
+    "Apne partner ko chhoti chhoti cheezon se surprise karo—woh bohot maayne rakhta hai! 🎁",
     "Pyar ek gaane jaisa hai—woh rhythm dhoondho jo dono ke liye perfect ho! 🎶",
     "Ek doosre ke liye safe place bano is chaotic duniya mein! 🏰",
     "Pyar tab badhta hai jab tum isse kindness aur patience se seenchte ho! 🌱",
     "Pyar wala dil chhoti cheezon mein sundarta dekhta hai—kareeb se dekho! 👀",
-    "Saath mein naacho, chahe music na ho—pyar apna music banata hai! 💃🕺",
+    "Dance together, even if there’s no music—love makes its own! 💃🕺",
     "Pyar matlab kisi ko apna waqt dena—yeh sabse keemti tohfa hai! ⏳",
     "Woh bano jo apne partner ko forever pe yakeen dilaye! 💍",
     "Pyar perfect insaan dhoondhne ka nahi—perfect tareeke se pyar karne ka naam hai! 💞",
     "Ek kiss shabdon se zyada bol sakti hai—rokna mat! 😘",
     "Pyar ek team sport hai—saath khelo, saath jeeto! 🏆",
     "Woh partner bano jo tumhe chahiye—pyar aur support dene wala! 🤗",
-    "Pyar matlab saath badhna, alag nahi hona—connected raho! 🌿",
+    "Pyar matlab saath badhna, alag nahi hona—stay connected! 🌿",
     "Har pyar ki kahani sundar hoti hai—apni kahani best banao! 📖",
 
     # Self-Care (English) - 50
@@ -341,7 +343,7 @@ FALLBACK_ADVICE = [
     "Zor se haso—yeh sabse best dawa hai! 😂",
     "Har din woh karo jo tumhe khushi de! 😊",
     "Apne shareer ka khayal rakho—yeh tumhara ghar hai! 🏋️",
-    "Apne aap ke saath narmi se pesh aao—tum bohot acha kar rahe ho! 🤗",
+    "Be gentle with yourself—tum bohot acha kar rahe ho! 🤗",
     "Self-care luxury nahi, zarurat hai—ise priority do! 🌿",
 
     # More Motivational (English) - 50
@@ -391,12 +393,12 @@ FALLBACK_ADVICE = [
     "Committed raho—badi cheezein waqt leti hain! ⏳",
     "Tum ek heera ho ban raha hai—chamakate raho! 💎",
     "Tumhara safar tumhara hai—ise fakr se apnao! 🛣️",
-    "Chadhate raho—upar ka nazara mehnat ke layak hai! 🧗",
-    "Darr ko tumhe rokne mat do—usse apni taakat banao! 🔥",
-    "Tum game-changer ho—jeetne ke liye khelo! 🎮",
-    "Haar ka sirf ek tareeka hai—koshish chhod dena! 🚫",
-    "Tumhara passion tumhari taakat hai—ise chhod do! ⚡",
-    "Apni kahani ka hero bano—ek zabardast ending likho! 📖",
+    "Keep climbing—the top is worth the effort! 🧗",
+    "Don’t let fear stop you—let it fuel you! 🔥",
+    "You’re a game-changer—play to win! 🎮",
+    "The only way to fail is to stop trying! 🚫",
+    "Your passion is your power—unleash it! ⚡",
+    "Be the hero of your own story—write a great ending! 📖",
 
     # More Funny (English) - 50
     "I’m on a diet—I only eat food that makes me happy! 🍔",
@@ -448,7 +450,7 @@ FALLBACK_ADVICE = [
     "Main galtiyan nahi karta; main seekhne ke mauke banata hoon! 📚",
     "Main toota nahi hoon; bas pre-rich hoon! 💰",
     "Main zyada nahi khaata; bas khane se zyada pyar karta hoon! 🍕",
-    "Main single nahi hoon; bas freedom ke saath long-term relationship mein hoon! 🕊️",
+    "Main single nahi hoon; main bas freedom ke saath long-term relationship mein hoon! 🕊️",
     "Main pasina nahi bahata; main pressure mein chamakta hoon! ✨",
     "Main coffee ka addict nahi hoon; hum bas serious relationship mein hain! ☕",
 
@@ -498,13 +500,13 @@ FALLBACK_ADVICE = [
     "Un logon ke saath raho jo tumhari keemat samajhte hain! 💎",
     "Tum sab kuch control nahi kar sakte—jo kar sakte ho uspe focus karo! 🎯",
     "Zindagi ek safar hai, race nahi—maze lo! 🚗",
-    "Woh badlaav bano jo duniya mein dekhna chahte ho! 🌍",
-    "Har chunauti ek mauka hai mazboot hone ka! 💪",
-    "Maukon ka intezaar mat karo—unhe banao! 🔨",
-    "Apne values ke saath sachche raho—woh tumhara compass hain! 🧭",
-    "Zindagi doosron ke saath baantne se behtar hoti hai—connect karo! 👥",
-    "Seekhte raho—gyaan tumhari sabse badi daulat hai! 📚",
-    "Tum kabhi phanse nahi ho—bas ek naye nazariye ki zarurat hai! 🔄",
+    "Be the change you wish to see in the world! 🌍",
+    "Every challenge is a chance to grow stronger! 💪",
+    "Don’t wait for opportunities—create them! 🔨",
+    "Stay true to your values—they’re your compass! 🧭",
+    "Life’s better when you share it with others—connect! 👥",
+    "Keep learning—knowledge is your greatest asset! 📚",
+    "You’re never stuck—you just need a new perspective! 🔄",
 
     # More Random/Witty (English) - 50
     "I’m not a chef, but I can microwave like a pro! 🍲",
@@ -695,7 +697,7 @@ FALLBACK_ADVICE = [
     "I’m not a rebel; I’m a rule-redefining visionary! ✍️",
     "Stay hopeful—better days are coming! ☀️",
     "I’m not broke; I’m just on a budget journey! 💸",
-    "You’re a lighthouse—shine for those lost at sea! 🏮",
+    "You’re a lighthouse—guide others with your glow! 🏮",
     "I’m not a mess; I’m a chaotic work of art! 🖼️",
     "Be the kind of person who makes Mondays amazing! 📅",
     "I don’t need a gym; I chase happiness for cardio! 🏃",
@@ -711,7 +713,7 @@ FALLBACK_ADVICE = [
     "I’m not a hoarder; I’m a memory archivist! 📦",
     "Stay vibrant—life’s too dull without your light! 🎨",
     "I’m not a chef; I’m a snack savant! 🍟",
-    "You’re a spark—ignite the extraordinary! ⚡",
+    "You’re a spark—ignite something incredible! ⚡",
     "I’m not late; I’m just on epic timing! ⏰",
     "You’re a dreamer—don’t let anyone clip your wings! 🌌",
     "I’m not a procrastinator; I’m a deadline adventurer! ⏳",
@@ -763,61 +765,218 @@ FALLBACK_ADVICE = [
     "I’m not a chef; I’m a snack expert! 🍟",
     "You’re a spark—ignite something incredible! ⚡",
 
-    # Mixed Categories (Hindi) - 250
-    "Tum ek sitara ho—kisi ko apni roshni kam mat karne do! 🌟",
-    "Main chef nahi hoon, lekin paani jala sakta hoon jaise pro! 🔥",
-    "Zindagi bohot chhoti hai serious hone ke liye—has ke chhod do! 😂",
-    "Woh bano jo kisi ko jadoo pe yakeen dilaye! 🪄",
-    "Main aalsi nahi hoon; bas hibernation ki practice kar raha hoon! 🐻",
-    "Curious raho—zindagi ek adventure hai jo khulne ka intezaar kar rahi hai! 🌍",
-    "Maine apne mirror se kaha main sundar hoon—usne jhagda nahi kiya! 🪞",
-    "Tum ek masterpiece ho—kisi ko apne upar paint mat karne do! 🎨",
-    "Main morning person nahi hoon—main sunrise avoider hoon! 🌅",
-    "Apne sapne bade rakho aur pareshaniyan chhoti! 🌈",
-    "Main thokar nahi khaata; bas freestyle dance move karta hoon! 💃",
-    "Negativity ke registan mein positivity ka fountain bano! 💧",
-    "Main khoya nahi hoon; bas ek side quest pe hoon! 🎮",
-    "Tum apni kahani ke lekhak ho—bestseller likho! 📖",
-    "Main clumsy nahi hoon; bas gravity ka best friend hoon! 🤕",
-    "Meharbaan raho—yeh sabse bada superpower hai jo tumhare paas ho sakta hai! 🦸",
-    "Mujhe vacation nahi chahiye; mujhe neend chahiye! 😴",
-    "Tum ek firework ho—aasmaan ko roshan karo! 🎆",
-    "Main tumhe ignore nahi kar raha; bas mental vacation pe hoon! 🏝️",
-    "Woh insaan bano jo glitter ka trail chhod jaye! ✨",
-    "Main procrastinator nahi hoon; main strategic delayer hoon! ⏳",
-    "Tum ek yoddha ho—kisi ko apni talwaar churane mat do! ⚔️",
-    "Mere din kharab nahi hote; mere comedic plot twists hote hain! 🎭"
-    "Apne aap ke saath sachche raho—tum ek limited edition ho! 💎"
-    "Main logon ko khush karne wala nahi hoon; main pizza khush karne wala hoon! 🍕",
-    "Tum ek bagicha ho—har mausam mein khilte raho! 🌸"
-    "Main night owl nahi hoon; main sitare dekhne wala hoon! 🌠"
-    "Woh dost bano jo zindagi ko party banata hai! 🎉"
-    "Main overthink nahi karta; main 4D mein sochta hoon! 🧠"
-    "Tum ek melody ho—apna hi tune bajao! 🎵"
-    "Main rebel nahi hoon; main bas rule-bending artist hoon! 🎨"
-    "Umeed rakho—behtar din hamesha aate hain! 🌞"
-    "Main toota nahi hoon; main bas budget adventure pe hoon! 💸"
-    "Tum ek lighthouse ho—doosron ko apni roshni se raasta dikhao! 🏮"
-    "Main mess nahi hoon; main abstract art ka kaam hoon! 🖼️"
-    "Woh insaan bano jo Mondays ko exciting banata hai! 📅"
-    "Mujhe gym ki zarurat nahi; main apne sapnon ka peecha karta hoon! 🏃"
-    "Tum ek khazana ho—kisi ko tumhe chhupane mat do! 🏴‍☠️"
-    "Main drama queen nahi hoon; main drama festival hoon! 🎭"
-    "Stay adventurous—zindagi bohot chhoti hai safe khelne ke liye! 🌍"
-    "Main morning person nahi hoon; main coffee convert hoon! ☕",
-    "Tum ek comet ho—jadoo ka trail chhod do! ☄️",
-    "Main perfectionist nahi hoon; main ‘close enough’ expert hoon! 🎯",
-    "Woh insaan bano jo sabko dekhe—tumhari keemat maayne rakhti hai! 👀",
-    "Mujhe plan ki zarurat nahi; meri playlist hai! 🎶",]
+    # New Haryanvi Advice
+    "Padosi ke Wi-Fi pe nazar mat rakh, apna net recharge kar le! 📶",
+    "Chai ke sath samosa kha, par gym ka bhi hisaab rakh le! ☕",
+    "Love mein dil mat de, pehle uski scooter ka mileage check kar! 🛵",
+    "Bazar ja ke sabzi ka bhav puchh, par padosan se mat puchh! 🥕",
+    "Phone ka charger sambhal ke rakh, warna zindagi discharge ho jayegi! 🔌",
+    "Kanjoosi mat kar, par biryani mein extra elaichi bhi mat daal! 🍲",
+    "Shaadi ke liye chhori dhoondh, par uska Instagram bhi dekh le! 📸",
+    "Dost ke WhatsApp status pe mat ja, uska bank balance check kar! 💸",
+    "Gaon ke khet mein selfie mat le, pehle khet ka maalik puchh le! 🌾",
+    "Time pe uth ja, warna padosi ka rooster tera alarm ban jayega! 🐓",
+    "Sapne bade dekh, par pehle apni neend poori kar le! 😴",
+    "Paisa bacha ke rakh, par ATM ka PIN kisi ko mat batana! 💳",
+    "Chhori ke message ka reply jaldi de, warna vo tera number block kar degi! 📱",
+    "Gaon ke raste pe chal, par apna GPS bhi on rakh! 🗺️",
+    "TV pe serial mat dekh, apni zindagi ka plot twist sambhal! 📺",
+    "Bike ke horn pe paisa mat uda, thodi si shanti khareed le! 📢",
+    "Padosi ke kutton se dosti kar, warna raat bhar bhokenge! 🐶",
+    "Shaadi ke liye jaldi mat kar, pehle apna naukri pakki kar! 💼",
+    "Chai ka cup sambhal ke rakh, warna ghar mein toofan aayega! ☕",
+    "Bazar mein bhav mat bhool, par dil ka bhav bhi sambhal! ❤️",
+    "Phone ka data bacha, par padosi ke Wi-Fi ka password maang le! 📡",
+    "Dost ke saath party kar, par bill ka hisaab pehle rakh le! 🍻",
+    "Gaon ke mela mein ja, par apna wallet sambhal ke rakh! 🎡",
+    "Chhori ke liye love letter mat likh, WhatsApp pe emoji bhej! 😜",
+    "Apni bike ka petrol bacha, par speed ka show-off mat kar! ⛽",
+
+    # New Marathi Advice
+    "Shejaryacha Wi-Fi var najar thevu naka, aplya net cha recharge kar! 📶",
+    "Chaha barobar samosa kha, pan gym cha hisaab pan thev! ☕",
+    "Premat dil deu naka, adhi tyachya scooter cha mileage bagh! 🛵",
+    "Bazaar la jaaun bhajicha bhav vichar, pan shejari baili la naka! 🥕",
+    "Phone cha charger savr, nahi tar jivan discharge hoil! 🔌",
+    "Kanjushi karu naka, pan biryanit extra velchi pan taku naka! 🍲",
+    "Lagnasathi pori shodh, pan ticha Instagram pan bagh! 📸",
+    "Mitra WhatsApp status var jaau naka, tyacha bank balance bagh! 💸",
+    "Gavachya shetat selfie gheu naka, adhi shetacha malak vichar! 🌾",
+    "Veli uth, nahi tar shejaryacha kombda tujha alarm hoil! 🐓",
+    "Swapna mothi bagh, pan adhi apli nidra puri kar! 😴",
+    "Paisa bachaun thev, pan ATM cha PIN konala sangu naka! 💳",
+    "Pori cha message la jaldi reply de, nahi tar tujha number block hoil! 📱",
+    "Gavachya rastyavar chal, pan aplya GPS pan chalu thev! 🗺️",
+    "TV var serial baghu naka, aplya jivanacha plot twist savr! 📺",
+    "Bike cha horn var paisa kharch karu naka, thodi shanti vikat ghe! 📢",
+    "Shejaryachya kutryashi dosti kar, nahi tar ratra bhar bhokatil! 🐶",
+    "Lagnasathi ghai karu naka, adhi apli naukri pakki kar! 💼",
+    "Chahacha cup savr, nahi tar gharat vadal yeil! ☕",
+    "Bazaar la bhav visaru naka, pan dilacha bhav pan savr! ❤️",
+    "Phone cha data bacha, pan shejaryacha Wi-Fi password maag! 📡",
+    "Mitrasobat party kar, pan bill cha hisaab adhi thev! 🍻",
+    "Gavachya jeatryat ja, pan aplya khishyacha savr! 🎡",
+    "Pori sathi love letter likhu naka, WhatsApp var emoji pathav! 😜",
+    "Aplya bike cha petrol bacha, pan speed cha show-off karu naka! ⛽",
+
+    # New Telugu Advice
+    "Pakkinti Wi-Fi meeda kannu pettaku, ni net recharge chesko! 📶",
+    "Tea tho samosa tinu, kaani gym lo kuda hisaab pettuko! ☕",
+    "Love lo manasu ivvaku, mundu vaadi scooter mileage check chey! 🛵",
+    "Market ki velli kooragayala rate adugu, kaani pakkinti amma ni adagaku! 🥕",
+    "Phone charger sambhal, lekapothe life discharge aipothundi! 🔌",
+    "Lanjam cheyaku, kaani biryani lo extra lavangam vesukoku! 🍲",
+    "Pelliki ammayi chudu, kaani tana Instagram kuda chudu! 📸",
+    "Friend WhatsApp status chusi vellaku, vaadi bank balance chudu! 💸",
+    "Palletoor panta lo selfie teeyaku, mundu panta owner ni adugu! 🌾",
+    "Time ki legu, lekapothe pakkinti kodi ni alarm aipothundi! 🐓",
+    "Kalalu peddaga kanu, kaani mundu ni nidra poorthi chey! 😴",
+    "Dabbu aadupettu, kaani ATM PIN evvariki cheppaku! 💳",
+    "Ammayi message ki tvaraga reply ivvu, lekapothe ni number block chesthundi! 📱",
+    "Palletoor rasta lo nadu, kaani ni GPS on chesuko! 🗺️",
+    "TV lo serial chudaku, ni jeevitham plot twist sambhal! 📺",
+    "Bike horn meeda dabbu kharchu cheyaku, koncham shanti konuko! 📢",
+    "Pakkinti kukka tho sneham chey, lekapothe ratri antha moguthundi! 🐶",
+    "Pelliki tondara cheyaku, mundu ni job confirm chey! 💼",
+    "Tea cup sambhal, lekapothe intlo toofan vastundi! ☕",
+    "Market lo rate marchipoku, kaani manasu rate kuda sambhal! ❤️",
+    "Phone data save chey, kaani pakkinti Wi-Fi password adugu! 📡",
+    "Friends tho party chey, kaani bill hisaab mundu pettuko! 🍻",
+    "Palletoor santalo vellu, kaani ni wallet sambhal! 🎡",
+    "Ammayi kosam love letter rayaku, WhatsApp lo emoji pampu! 😜",
+    "Ni bike petrol save chey, kaani speed show-off cheyaku! ⛽",
+
+    # New Tamil Advice
+    "Pakkathu veetu Wi-Fi la kannu vekkatha, un net recharge pannu! 📶",
+    "Tea kooda samosa sapdu, aana gym la kooda kanakku vekkatha! ☕",
+    "Love la manasu kudu, aana munnala avan scooter mileage check pannu! 🛵",
+    "Market la kaai rate kekku, aana pakkathu aunty kitta kekkaatha! 🥕",
+    "Phone charger pathukko, illana life discharge aayidum! 🔌",
+    "Kanjam pannatha, aana biryani la extra laungam podatha! 🍲",
+    "Kalyana ponnu paaru, aana ava Instagram um paaru! 📸",
+    "Friend WhatsApp status paakatha, avan bank balance check pannu! 💸",
+    "Ooroda vayal la selfie edukkatha, munnadi vayal owner kitta kekku! 🌾",
+    "Time ku ezhunthu, illana pakkathu veetu kozhi un alarm aayidum! 🐓",
+    "Kanavu perusa paaru, aana munnadi un thoongu mudichuko! 😴",
+    "Paisa save pannu, aana ATM PIN yaarukum sollatha! 💳",
+    "Ponnu message ku seekiram reply pannu, illana un number block pannuva! 📱",
+    "Ooru paathai la nadu, aana un GPS um on panniko! 🗺️",
+    "TV la serial paakatha, un vaazhkai plot twist pathuko! 📺",
+    "Bike horn la kaasu selavu pannatha, konjam amaithi vaangu! 📢",
+    "Pakkathu veetu naai kooda friend aagu, illana raathiri kathum! 🐶",
+    "Kalyana vishayathula vegam kaatatha, munnadi un velai confirm pannu! 💼",
+    "Tea cup pathukko, illana veetla paathiram puyal adikkum! ☕",
+    "Market la rate marakkatha, aana manasu rate um pathuko! ❤️",
+    "Phone data save pannu, aana pakkathu veetu Wi-Fi password kekku! 📡",
+    "Friends kooda party pannu, aana bill kanakku munnadi vekkatha! 🍻",
+    "Ooru thiruvizhala po, aana un purse pathukko! 🎡",
+    "Ponnu kaga love letter ezhuthatha, WhatsApp la emoji anuppu! 😜",
+    "Un bike petrol save pannu, aana speed show-off pannatha! ⛽",
+
+    # New Kannada Advice
+    "Pakkada mane Wi-Fi meele kannu haaku beda, ni net recharge maadu! 📶",
+    "Chaha jothe samosa tinnu, aadre gym na hisaab kooda ittuko! ☕",
+    "Love nalli manasu kodbidi, aadre avana scooter mileage check maadu! 🛵",
+    "Market ge hogi tharakaari rate kelu, aadre pakkada aunty kitta kelabeda! 🥕",
+    "Phone charger kaythu, illandre life discharge aagutte! 🔌",
+    "Kanjusi maadabeda, aadre biryani ge extra lavanga haaku beda! 🍲",
+    "Maduvege hudugi nodu, aadre avala Instagram kooda nodu! 📸",
+    "Friend WhatsApp status nodabeda, avana bank balance check maadu! 💸",
+    "Halli gudde selfie tegeyabeda, mundhe gudde owner kelu! 🌾",
+    "Time ge yeli, illandre pakkada mane koli ni alarm aagutte! 🐓",
+    "Kanasu doddadagi nodu, aadre mundhe ni nidre mugisu! 😴",
+    "Hana save maadu, aadre ATM PIN yaarige helabeda! 💳",
+    "Hudugi message ge bega reply kottu, illandre ni number block aagutte! 📱",
+    "Halli rasteyalli nadi, aadre ni GPS on ittuko! 🗺️",
+    "TV nalli serial nodabeda, ni jeevana plot twist kaythu! 📺",
+    "Bike horn ge hana kharchu maadabeda, swalp shanti kreeduko! 📢",
+    "Pakkada mane naayi jothe sneha maadu, illandre raatri kugutte! 🐶",
+    "Maduvege thurthu maadabeda, mundhe ni kelsa confirm maadu! 💼",
+    "Chaha cup kaythu, illandre maneyalli bavi barutte! ☕",
+    "Market nalli rate mareyabeda, aadre manasina rate kooda kaythu! ❤️",
+    "Phone data save maadu, aadre pakkada mane Wi-Fi password kelu! 📡",
+    "Friends jothe party maadu, aadre bill hisaab mundhe ittuko! 🍻",
+    "Halli jatrege hogu, aadre ni khishe kaythu! 🎡",
+    "Hudugi ge love letter bariyabeda, WhatsApp nalli emoji kalisu! 😜",
+    "Ni bike petrol save maadu, aadre speed show-off maadabeda! ⛽",
+
+    # New Punjabi Advice
+    "Padosi de Wi-Fi te nazar na rakh, apna net recharge kar le! 📶",
+    "Chai naal samosa kha, par gym da vi hisaab rakh le! ☕",
+    "Love ch dil na de, pehla usdi scooter da mileage check kar! 🛵",
+    "Bazaar ja ke sabzi da bhav puchh, par padosan to na puchh! 🥕",
+    "Phone da charger sambhal, nahi ta zindagi discharge ho jayegi! 🔌",
+    "Kanjoosi na kar, par biryani ch extra elaichi vi na paa! 🍲",
+    "Shaadi layi kudi labh, par usda Instagram vi dekh le! 📸",
+    "Dost de WhatsApp status te na ja, usda bank balance check kar! 💸",
+    "Pind de khet ch selfie na le, pehla khet da maalik puchh le! 🌾",
+    "Time te uth ja, nahi ta padosi da kukkad tera alarm ban jayega! 🐓",
+    "Sapne vadde dekh, par pehla apni neend poori kar le! 😴",
+    "Paisa bacha ke rakh, par ATM da PIN kise nu na dass! 💳",
+    "Kudi de message da jaldi reply de, nahi ta tera number block ho jayega! 📱",
+    "Pind de raste te chal, par apna GPS vi on rakh! 🗺️",
+    "TV te serial na dekh, apni zindagi da plot twist sambhal! 📺",
+    "Bike de horn te paise na uda, thodi si shanti khareed le! 📢",
+    "Padosi de kutte naal dosti kar, nahi ta raat bhar bhokange! 🐶",
+    "Shaadi layi jaldi na kar, pehla apni naukri pakki kar! 💼",
+    "Chai da cup sambhal ke rakh, nahi ta ghar ch toofan aayega! ☕",
+    "Bazaar ch bhav na bhool, par dil da bhav vi sambhal! ❤️",
+    "Phone da data bacha, par padosi de Wi-Fi da password mang le! 📡",
+    "Dost naal party kar, par bill da hisaab pehla rakh le! 🍻",
+    "Pind de mele ch ja, par apna wallet sambhal ke rakh! 🎡",
+    "Kudi layi love letter na likh, WhatsApp te emoji bhej! 😜",
+    "Apni bike da petrol bacha, par speed da show-off na kar! ⛽",
+]
+
 
 @app.on_message(filters.command("advice"))
-async def advice(_, message):
+async def advice(_, message: Message):
     A = await message.reply_text("Fetching advice for you... ✨")
-    # Pick a random advice from the local list
+    
     advice_text = random.choice(FALLBACK_ADVICE)
-    await A.edit(f"💡**[Fʀᴏᴍ](https://t.me/ceo_of_secularism)**: {advice_text}", disable_web_page_preview=True)
+    target_mention = "" 
+    
+    command_issuer_id = message.from_user.id 
+    
+    # 1. Check for direct mentions in the command text
+    if message.entities:
+        for entity in message.entities:
+            if entity.type == MessageEntityType.MENTION:
+                mentioned_username = message.text[entity.offset : entity.offset + entity.length].strip('@')
+                try:
+                    user_obj = await app.get_users(mentioned_username)
+                    if user_obj.id != command_issuer_id: # Only tag if not the command issuer
+                        target_mention = user_obj.mention
+                        break 
+                except Exception:
+                    pass 
+            elif entity.type == MessageEntityType.TEXT_MENTION:
+                if entity.user:
+                    if entity.user.id != command_issuer_id: # Only tag if not the command issuer
+                        target_mention = entity.user.mention
+                        break 
+    
+    # 2. If no direct mention found, check if it's a reply
+    if not target_mention and message.reply_to_message:
+        if message.reply_to_message.from_user:
+            replied_user = message.reply_to_message.from_user
+            if replied_user.id != command_issuer_id: # Only tag if not the command issuer
+                target_mention = replied_user.mention
+
+    # Construct the caption based on new formatting requirement:
+    # 💡 From (link): Advice Text @Mention (everything on one line)
+    
+    final_caption = f"💡**[Fʀᴏᴍ](https://t.me/ceo_of_secularism)**: {advice_text}"
+    
+    # If a target mention exists, append it directly after the advice text with a space
+    if target_mention:
+        final_caption += f" {target_mention}" # Add a space before the mention
+
+    await A.edit(final_caption, disable_web_page_preview=True)
 
 
 __MODULE__ = "Aᴅᴠɪᴄᴇ"
 __HELP__ = """
-/advice - Gᴇᴛ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ"""
+/advice - Gᴇᴛ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ.
+/advice @username - Tᴀɢ ᴛʜᴇ ᴍᴇɴᴛɪᴏɴᴇᴅ ᴜsᴇʀ (ɪғ ɴᴏᴛ ᴄᴏᴍᴍᴀɴᴅ ɪssᴜᴇʀ) ᴡɪᴛʜ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ.
+/advice (reply to user) - Tᴀɢ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴜsᴇʀ (ɪғ ɴᴏᴛ ᴄᴏᴍᴍᴀɴᴅ ɪssᴜᴇʀ) ᴡɪᴛʜ ʀᴀɴᴅᴏᴍ ᴀᴅᴠɪᴄᴇ."""
